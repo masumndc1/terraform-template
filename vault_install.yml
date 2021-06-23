@@ -16,7 +16,7 @@
 
   - name: Add apt source list
     ansible.builtin.apt_repository:
-      repo: https://apt.releases.hashicorp.com bionic main"
+      repo: deb https://apt.releases.hashicorp.com bionic main
       state: present
     when: ansible_distribution == 'Ubuntu' and
           ansible_distribution_release == 'bionic' 
