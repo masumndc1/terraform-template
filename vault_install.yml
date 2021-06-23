@@ -1,0 +1,29 @@
+---
+# this playbook will install hashicorp vault.
+# hashicorp vault store and tightly control access to tokens, 
+# passwords, certificates, encryption keys for protecting secrets 
+# and other sensitive data using a UI, CLI, or HTTP API.
+- hosts: localhost
+  gather_facts: yes
+  become: yes
+  
+  tasks: 
+  - name: Add gpg key of jenkins
+    ansible.builtin.apt_key:
+      url: https://apt.releases.hashicorp.com/gpg
+      state: present
+    when: ansible_distribution == 'Ubuntu'
+
+  - name: Add apt source list
+    ansible.builtin.apt_repository:
+      repo: https://apt.releases.hashicorp.com bionic main"
+      state: present
+    when: ansible_distribution == 'Ubuntu' && 
+          ansible_distribution_release == 'bionic' 
+          
+  - name: Install vault
+    apt:
+      name: ['vault']
+      state: latest
+      update_cache: yes
+    when: ansible_distribution == 'Ubuntu'
