@@ -18,7 +18,7 @@
     ansible.builtin.apt_repository:
       repo: https://apt.releases.hashicorp.com bionic main"
       state: present
-    when: ansible_distribution == 'Ubuntu' && 
+    when: ansible_distribution == 'Ubuntu' and
           ansible_distribution_release == 'bionic' 
           
   - name: Install vault
