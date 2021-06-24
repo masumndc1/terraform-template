@@ -8,5 +8,9 @@
 ## for mac: download vault.zip or install it by brew.
 ## unzip it and place it to as /usr/local/bin/vault.
 
+## These .tf are tested on v0.14.9. Therefore we needed to use following syntax
+type = "string"               will be     type = string
+user = "${var.vsphere_user}"  will be     user = var.vsphere_user
+
 
 
