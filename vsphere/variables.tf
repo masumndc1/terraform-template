@@ -3,13 +3,13 @@
 variable "vsphere_server" {
   description = "vsphere server info"
   type = string
-  default = "192.168.20.142"
+  default = "192.168.2.70"
 }
 
 variable "vsphere_user" {
   description = "administrative user"
   type = string
-  default = "root"
+  default = "administrator@vspere.local"
 }
 
 variable "vsphere_password" {
@@ -55,12 +55,18 @@ variable "ipv4mask" {
 
 variable "ipaddress" {
    description = "VM IP address"
-   type = "list"
+   type = list
    default = ["192.168.20.200"]
 }
 
 variable "dc" {
   description = "datacenter Name"
+  type = string
+  default = "HomeDataCenter"
+}
+
+variable "datastore" {
+  description = "datastore Name"
   type = string
   default = "datastore1"
 }
