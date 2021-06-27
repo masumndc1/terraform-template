@@ -59,22 +59,10 @@ variable "ipaddress" {
    default = ["192.168.20.200"]
 }
 
-variable "dc" {
-  description = "datacenter Name"
-  type = string
-  default = "HomeDataCenter"
-}
-
-variable "datastore" {
-  description = "datastore Name"
-  type = string
-  default = "datastore1"
-}
-
 variable "vmgateway" {
   description = "VM gateway"
   type = string
-  default = "192.168.20.2"
+  default = "192.168.2.1"
 }
 
 variable "dns" {
