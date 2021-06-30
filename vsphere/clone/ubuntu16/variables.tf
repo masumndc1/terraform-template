@@ -1,23 +1,5 @@
 # variables will come here
 
-variable "vsphere_server" {
-  description = "vsphere server info"
-  type = string
-  default = "192.168.2.70"
-}
-
-variable "vsphere_user" {
-  description = "administrative user"
-  type = string
-  default = "administrator@vspere.local"
-}
-
-variable "vsphere_password" {
-  description = "administrative user password"
-  type = string
-  default = "YourPasswordH3r3"
-}
-
 variable "datacenter" {
   description = "datacenter name"
   type = string
@@ -46,11 +28,6 @@ variable "pool" {
   description = "Resource pool"
   type = string
   default = "resourcePool1"
-}
-
-variable "ubuntu18template" {
-  description = "Ubuntu18 template" 
-  default = "ubuntu18template"
 }
 
 variable "ubuntu16template" {
