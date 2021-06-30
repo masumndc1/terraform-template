@@ -1,9 +1,4 @@
-provider "vsphere" {
-  user                 = var.vsphere_user
-  password             = var.vsphere_password
-  vsphere_server       = var.vsphere_server
-  allow_unverified_ssl = true
-}
+# ubuntu18 main file
 
 data "vsphere_datacenter" "datacenter" {
   name = var.datacenter
