@@ -11,3 +11,11 @@ provider "vsphere" {
 module "ubuntu16" {
   source = "./clone/ubuntu16"
 }
+
+module "ubuntu18" {
+  source = "./clone/ubuntu18"
+}
+
+module "centos7" {
+  source = "./clone/centos7"
+}
