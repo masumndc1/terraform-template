@@ -51,7 +51,7 @@ resource "vsphere_virtual_machine" "cloned_virtual_machine" {
   disk {
     label = "disk0"
     #size = var.disk_size
-    size             = "100"
+    size  = "100"
     thin_provisioned = true
   }
 
@@ -62,19 +62,20 @@ resource "vsphere_virtual_machine" "cloned_virtual_machine" {
       linux_options {
         host_name = var.vmname
         domain    = var.domain
-
-        network_interface {
-          ipv4_address = "192.168.2.210"
-          ipv4_netmask = var.ipv4mask
-        }
-        network_interface {
-        }
-
-        ipv4_gateway = var.vmgateway
-        #dns_server_list = var.dns
-        dns_server_list = ["8.8.8.8", "4.2.2.1"]
-
       }
+
+      network_interface {
+        ipv4_address = "192.168.2.210"
+        ipv4_netmask = var.ipv4mask
+      }
+
+      network_interface {
+      }
+
+       ipv4_gateway = var.vmgateway
+       #dns_server_list = var.dns
+       dns_server_list = ["8.8.8.8", "4.2.2.1"]
     }
+      
   }
 }
