@@ -37,7 +37,7 @@ variable "ubuntu16template" {
 
 variable "vmname" {
   description = "Name of VM"
-  default = "vmname"
+  default = "ubuntu16"
 }
 
 variable "vnictype" {
