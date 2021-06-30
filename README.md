@@ -13,4 +13,7 @@ type = "string"               will be     type = string
 user = "${var.vsphere_user}"  will be     user = var.vsphere_user
 
 
-
+...Customization of the guest operating system 'centos7_64Guest' is not
+supported in this configuration. Microsoft Vista (TM) and Linux guest with
+Logical Volume Manager are supported only for recent ESX host and VMware Tools
+versions. Refer to vCenter documentation for supported configurations
