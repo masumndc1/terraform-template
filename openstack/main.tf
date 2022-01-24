@@ -1,5 +1,7 @@
 # more on openstack terraform template
 # https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs
+#
+# this is the main.tf file
 
 # Define required providers
 terraform {
@@ -28,19 +30,14 @@ provider "openstack" {
   # like, source source.sh
 }
 
-resource "openstack_compute_instance_v2" "basic" {
-  name            = "basic"
-  image_id        = "8eba1ccc-bbeb-4769-b0a3-1f2b3b523b75"
-  flavor_id       = "0143b0d1-4788-4d1f-aa04-4473e4a7c2a6"
-  key_pair        = "khabirtest"
-  security_groups = ["default"]
-
-  metadata = {
-    #    this = "that"
-  }
-
-  network {
-      name = "test-network"
-  }
-
+# router of the project
+resource "openstack_networking_router_v2" "primary-router" {
+  name                = "${var.project_main_router}"
+  admin_state_up      = true
+  external_network_id = "${data.openstack_networking_network_v2.public.id}"
 }
+
+#module "centos" {
+#  source = "./vms/centos.tf"
+#}
+
