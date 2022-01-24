@@ -23,3 +23,9 @@ variable "project_internal_network" {
   type = string
   default = "internal"
 }
+
+variable "internal_network_block" {
+  description = "project internal network block"
+  type = string
+  default = "192.168.50.0/24"
+}
