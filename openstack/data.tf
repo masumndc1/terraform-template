@@ -6,7 +6,6 @@
 #  name = "${var.project}"
 #}
 
-
 data "openstack_networking_network_v2" "public" {
   name = "${var.project_external_network}"
 }
