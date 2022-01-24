@@ -38,7 +38,7 @@ resource "openstack_networking_network_v2" "project_internal_network" {
 
 # Internal network subnet 1
 resource "openstack_networking_subnet_v2" "subnet_1" {
-  network_id = "${openstack_networking_network_v2.var.project_internal_network.id}"
+  network_id = "${openstack_networking_network_v2.project_internal_network.id}"
   cidr       = "${var.internal_network_block}"
   ip_version = 4
 }
@@ -55,6 +55,46 @@ resource "openstack_networking_router_interface_v2" "router_internal_interface_1
   subnet_id = "${openstack_networking_subnet_v2.subnet_1.id}"
 }
 
+# Security group
+resource "openstack_compute_secgroup_v2" "ssh-ping-https" {
+  name        = "ssh-https-ping"
+  description = "A modified security group"
+
+  rule {
+      from_port   = 22
+      to_port     = 22
+      ip_protocol = "tcp"
+      cidr        = "0.0.0.0/0"
+  }
+
+  rule {
+      from_port   = 80 
+      to_port     = 80 
+      ip_protocol = "tcp"
+      cidr        = "0.0.0.0/0"
+  }
+
+  rule {
+      from_port   = 443
+      to_port     = 443 
+      ip_protocol = "tcp"
+      cidr        = "0.0.0.0/0"
+  }
+
+  rule {
+      from_port   = 8080
+      to_port     = 8080
+      ip_protocol = "tcp"
+      cidr        = "0.0.0.0/0"
+  }
+
+  rule {
+      from_port   = -1
+      to_port     = -1
+      ip_protocol = "icmp"
+      cidr        = "0.0.0.0/0"
+  }
+}
 #module "centos" {
 #  source = "./vms/centos.tf"
 #}
