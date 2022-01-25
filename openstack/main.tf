@@ -30,72 +30,23 @@ provider "openstack" {
   # like, source source.sh
 }
 
-# Internal network
-resource "openstack_networking_network_v2" "project_internal_network" {
-  name           = "${var.project_internal_network}"
-  admin_state_up = "true"
+# module network
+module "network" {
+  source = "./network"
 }
 
-# Internal network subnet 1
-resource "openstack_networking_subnet_v2" "subnet_1" {
-  network_id = "${openstack_networking_network_v2.project_internal_network.id}"
-  cidr       = "${var.internal_network_block}"
-  ip_version = 4
+# module Security 
+module "security" {
+  source = "./secgroup"
 }
 
-# router of the project
-resource "openstack_networking_router_v2" "primary-router" {
-  name                = "${var.project_main_router}"
-  admin_state_up      = true
-  external_network_id = "${data.openstack_networking_network_v2.public.id}"
+module "Centos7" {
+  source     = "./vms/Centos7"
+  name       = "${var.centos7}"
+  image_id   = "${data.openstack_images_image_v2.centos7.id}"
+  flavor_id  = "${data.openstack_compute_flavor_v2.small.id}"
+  security_groups = "${var.securitygroup}"
+  key_pair   = "${var.vm_keypair}"
+  network    = "${var.project_internal_network}"
+  user_data_file = "${var.user_data_file}"
 }
-
-resource "openstack_networking_router_interface_v2" "router_internal_interface_1" {
-  router_id = "${openstack_networking_router_v2.primary-router.id}"
-  subnet_id = "${openstack_networking_subnet_v2.subnet_1.id}"
-}
-
-# Security group
-resource "openstack_compute_secgroup_v2" "ssh-ping-https" {
-  name        = "ssh-https-ping"
-  description = "A modified security group"
-
-  rule {
-      from_port   = 22
-      to_port     = 22
-      ip_protocol = "tcp"
-      cidr        = "0.0.0.0/0"
-  }
-
-  rule {
-      from_port   = 80 
-      to_port     = 80 
-      ip_protocol = "tcp"
-      cidr        = "0.0.0.0/0"
-  }
-
-  rule {
-      from_port   = 443
-      to_port     = 443 
-      ip_protocol = "tcp"
-      cidr        = "0.0.0.0/0"
-  }
-
-  rule {
-      from_port   = 8080
-      to_port     = 8080
-      ip_protocol = "tcp"
-      cidr        = "0.0.0.0/0"
-  }
-
-  rule {
-      from_port   = -1
-      to_port     = -1
-      ip_protocol = "icmp"
-      cidr        = "0.0.0.0/0"
-  }
-}
-#module "centos" {
-#  source = "./vms/centos.tf"
-#}
-
