@@ -30,26 +30,50 @@ variable "internal_network_block" {
   default = "192.168.50.0/24"
 }
 
-variable "image_centos7" {
-  description = "centos 7 image"
+variable "securitygroup" {
+  description = "a security group"
+  type = string
+  default = "ssh-https-ping"
+}
+
+variable "centos7" {
+  description = "centos 7 info"
   type = string
   default = "CentOS-7"
 }
 
-variable "image_centos8" {
-  description = "centos 8 image"
+variable "centos8" {
+  description = "centos 8 info"
   type = string
   default = "CentOS-8"
 }
 
-variable "image_ubuntu18" {
-  description = "ubuntu 18.04 image"
+variable "ubuntu18" {
+  description = "ubuntu 18.04 info"
   type = string
   default = "Ubuntu-18.04"
 }
 
-variable "image_ubuntu20" {
-  description = "ubuntu 20.04 image"
+variable "ubuntu20" {
+  description = "ubuntu 20.04 info"
   type = string
   default = "Ubuntu-20.04"
+}
+
+variable "vm_flavor" {
+  description = "instance flavor"
+  type = string
+  default = "standard.tiny"
+}
+
+variable "vm_keypair" {
+  description = "keypair to be used"
+  type = string
+  default = "khabirtest"
+}
+
+variable "user_data_file" {
+  description = "commands to be used from this file"
+  type = string
+  default = "bootstrap.sh"
 }
