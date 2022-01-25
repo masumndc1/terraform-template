@@ -35,3 +35,7 @@ variable "user_data_file" {
   default = ""
 }
 
+variable "centos7-volume" {
+  type = string
+  default = "centos7-volume"
+}
