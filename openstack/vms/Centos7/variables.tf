@@ -39,3 +39,8 @@ variable "centos7-volume" {
   type = string
   default = "centos7-volume"
 }
+
+variable "floatingip" {
+  type = string
+  default = ""
+}
