@@ -77,3 +77,9 @@ variable "user_data_file" {
   type = string
   default = "bootstrap.sh"
 }
+
+variable "centos7-ip" {
+  description = "floating ip for centos7"
+  type = string
+  default = "86.50.168.33"
+}
