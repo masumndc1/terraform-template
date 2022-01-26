@@ -16,7 +16,7 @@ resource "openstack_networking_network_v2" "project_internal_network" {
 }
 
 resource "openstack_networking_subnet_v2" "internal_network_block" {
-  name       = "${var.internal_network_block}"
+  name       = "${var.project_internal_network}-subnetA"
   network_id = "${openstack_networking_network_v2.project_internal_network.id}"
   cidr       = "${var.internal_network_block}"
   ip_version = 4
