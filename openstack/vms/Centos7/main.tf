@@ -39,3 +39,9 @@ resource "openstack_compute_volume_attach_v2" "centos7-volume" {
   instance_id = "${openstack_compute_instance_v2.Centos7.id}"
   volume_id   = "${openstack_blockstorage_volume_v2.centos7-volume.id}"
 }
+
+# add a fixed floating ip 
+resource "openstack_compute_floatingip_associate_v2" "floatingip" {
+  floating_ip = "${var.floatingip}"
+  instance_id = "${openstack_compute_instance_v2.Centos7.id}"
+}
