@@ -49,4 +49,5 @@ module "Centos7" {
   key_pair   = "${var.vm_keypair}"
   network    = "${var.project_internal_network}"
   user_data_file = "${var.user_data_file}"
+  floatingip = "${var.centos7-ip}"
 }
