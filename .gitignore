@@ -1,0 +1,4 @@
+openstack/.terraform.lock.hcl
+openstack/.terraform/
+openstack/terraform.tfstate
+openstack/terraform.tfstate.backup
