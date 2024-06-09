@@ -15,7 +15,15 @@ unzip it and place it to as /usr/local/bin/vault.
 
 ## Usage
 
-Notes: These .tf are tested on v0.14.9. Therefore, we needed to use following syntax
+```
+user@linux openstack # terraform init
+user@linux openstack # terraform plan
+user@linux openstack # terraform apply
+```
+
+## Notes
+
+These .tf are tested on v0.14.9. Therefore, we needed to use following syntax
 
 ```
 type = "string"               will be     type = string
